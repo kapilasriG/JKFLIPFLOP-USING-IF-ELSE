@@ -1,4 +1,4 @@
-# JKFLIPFLOP-USING-IF-ELSE
+JKFLIPFLOP-USING-IF-ELSE
 
 **AIM:** 
 
@@ -34,15 +34,46 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
+1.Define the module with inputs (clk, rst, j, k) and output (q).
+2. Write an always block triggered on posedge clk or posedge rst.
+3.Add reset logic so q = 0 when rst = 1.
+4.Implement JK behavior using case statements for {j,k} (hold, set, reset, toggle).
+5.Verify with VWF simulation by applying test inputs and checking waveform outputs.
+
 
 **PROGRAM**
+```
+module deexp4 (j, k, clk, rst, q);
+  input j, k, clk, rst;
+  output reg q;
+  always @(posedge clk or posedge rst) begin
+    if (rst)
+      q <= 0; 
+    else if (j == 0 && k == 0)
+      q <= q; 
+    else if (j == 0 && k == 1)
+      q <= 0; 
+    else if (j == 1 && k == 0)
+      q <= 1; 
+    else if (j == 1 && k == 1)
+      q <= ~q; 
+  end
+endmodule
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+```
 
 **RTL LOGIC FOR FLIPFLOPS**
 
+<img width="1920" height="1080" alt="Screenshot (190)" src="https://github.com/user-attachments/assets/fc285558-310e-4938-a27c-3790e2cc1407" />
+
+
+
 **TIMING DIGRAMS FOR FLIP FLOPS**
 
+
+<img width="1920" height="1080" alt="Screenshot (194)" src="https://github.com/user-attachments/assets/c93f6c93-6a07-4300-99d6-934d181ece4a" />
+
+
+
 **RESULTS**
+Implementation of JK flipflop using verilog and validating their functionality using their functional tables is executed and the output is verified successfully.
